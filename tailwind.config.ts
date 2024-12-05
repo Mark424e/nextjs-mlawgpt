@@ -14,6 +14,7 @@ export default {
         text: '#7a7d8c',
         primary: '#C0A980',
         secondary: '#1F2435',
+        gray: '#f3f3f3',
       },
     },
   },

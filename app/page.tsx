@@ -1,13 +1,10 @@
 "use client"
-import Image from "next/image"
-import MlawGPTLogo from "./assets/MlawGPTLogo.svg"
 import { useChat } from "ai/react"
 import { Message } from "ai"
 import Bubble from "./components/Bubble"
 import LoadingBubble from "./components/LoadingBubble"
 import PromptSuggestionsRow from "./components/PromptSuggestionsRow"
 import Header from "./components/Header"
-import Footer from "./components/Footer"
 
 const Home = () => {
   const { append, isLoading, messages, input, handleInputChange, handleSubmit } = useChat()
@@ -25,8 +22,7 @@ const Home = () => {
 
   return (
     <>
-      <Header/>
-      <main className="flex items-center flex-col justify-between text-center">
+      <main>
         <section className={noMessages ? "" : "populated"}>
           {noMessages ? (
             <>
@@ -45,7 +41,7 @@ const Home = () => {
         </section>
         <div className="w-full border-t border-t-secondary pt-5">
           <form onSubmit={handleSubmit} className="h-16 w-full flex rounded-3xl overflow-hidden">
-            <input className="question-box" onChange={handleInputChange} value={input} placeholder="Skriv din besked..."/>
+            <input className="w-[85%] p-3 text-sm bg-gray" onChange={handleInputChange} value={input} placeholder="Skriv din besked..."/>
             <input className="w-[15%] p-[10px] text-sm border-none text-white bg-primary transition hover:bg-primary/50 cursor-pointer" type="submit" value="Send"/>
           </form>  
         <div className="mt-5">

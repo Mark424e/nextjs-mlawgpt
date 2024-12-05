@@ -10,7 +10,7 @@ const PromptSuggestionsRow = ({ onPromptClick }) => {
     "Hvornår skal jeg kontakte en advokat?"
   ]
   return (
-    <div className="prompt-suggestion-row">
+    <div className="w-full">
       {prompts.map((prompt, index) => 
         <PromptSuggestionButton 
           key={`suggestion-${index}`}
