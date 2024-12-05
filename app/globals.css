@@ -20,12 +20,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+  /*
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  */
 }
 
+/*
 main {
   width: 80vw;
   height: 80vh;
@@ -36,6 +39,7 @@ main {
   padding: 20px;
   text-align: center;
 }
+*/
 
 section {
   width: 100%;
