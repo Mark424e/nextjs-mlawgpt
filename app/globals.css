@@ -21,15 +21,23 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
 }
 
 main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.main-content {
   width: 50vw;
   height: 80vh;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;

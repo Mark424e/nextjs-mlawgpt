@@ -5,7 +5,7 @@ const Bubble = ({ message }) => {
   const { content, role } = message;
 
   return (
-    <div className={`flex items-end m-2 ${role}`}>
+    <div className={`flex items-end mx-2 my-4 ${role}`}>
       {role === 'assistant' && (
         <Image src={assistantPic} alt="assistant profile" width={30} className="rounded-full me-3" />
       )}
