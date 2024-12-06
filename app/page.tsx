@@ -38,6 +38,9 @@ const Home = () => {
           <section className={noMessages ? "" : "populated"}>
             {noMessages ? (
               <>
+                <h1 className="mb-4 text-4xl font-semibold leading-none tracking-tight text-secondary">
+                  Tal jura med mig
+                </h1>
                 <p className="px-20">
                   Vælg en prompt nedenfor, eller skriv din egen for at starte en
                   samtale med MlawGPT.
