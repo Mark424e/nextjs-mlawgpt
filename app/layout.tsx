@@ -1,7 +1,7 @@
 import "./globals.css"
 
 export const metadata = {
-  title: "MlawGPT",
+  title: "MieritzAI",
   description: "Find alt relevant information angående den juridiske verden her."
 }
 

@@ -34,7 +34,7 @@ const Home = () => {
       <Sidebar />
       <main>
         <div className="main-content">
-          <Image src={MlawGPTLogo} width="100" alt="MlawGPT Logo" />
+          <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" />
           <section className={noMessages ? "" : "populated"}>
             {noMessages ? (
               <>
