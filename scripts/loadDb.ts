@@ -54,9 +54,9 @@ const createCollection = async (similarityMetric: SimilarityMetric = "dot_produc
       dimension: 1536,
       metric: similarityMetric
     }
-  })
+  });
   console.log(res)
-}
+};
 
 const loadSampleData = async () => {
   const collection = await db.collection(ASTRA_DB_COLLECTION)
@@ -68,18 +68,18 @@ const loadSampleData = async () => {
         model: "text-embedding-3-small",
         input: chunk,
         encoding_format: "float"
-      })
+      });
 
       const vector = embedding.data[0].embedding
 
       const res = await collection.insertOne({
         $vector: vector,
         text: chunk
-      })
-      console.log(res)
+      });
+      console.log(res);
     }
   }
-}
+};
 
 const scrapePage = async (url: string) => {
   const loader = new PuppeteerWebBaseLoader(url, {
@@ -94,8 +94,8 @@ const scrapePage = async (url: string) => {
       await browser.close()
       return result
     }
-  })
+  });
   return ( await loader.scrape())?.replace(/<[^>]*>?/gm, '')
-}
+};
 
 createCollection().then(() => loadSampleData())
