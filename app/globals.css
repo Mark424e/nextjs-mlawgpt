@@ -107,7 +107,6 @@ section.populated {
   max-height: calc(100vh - 200px); /* Adjust based on your layout */
   overflow-y: auto;
   padding: 1rem;
-  scroll-behavior: smooth; /* Optional for smooth scrolling */
 }
 
 .chat-container::-webkit-scrollbar {

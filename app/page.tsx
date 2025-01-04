@@ -34,11 +34,11 @@ const Home = () => {
       <Sidebar />
       <main>
         <div className="main-content">
-          <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" />
           <section className={noMessages ? "" : "populated"}>
             <div className="chat-container">
               {noMessages ? (
                 <>
+                  <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" />
                   <h1 className="mb-4 text-4xl font-semibold leading-none tracking-tight text-secondary">
                     Tal jura med mig
                   </h1>
