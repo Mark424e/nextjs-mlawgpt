@@ -38,7 +38,7 @@ const Home = () => {
             <div className="chat-container">
               {noMessages ? (
                 <>
-                  <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" />
+                  <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" className="m-auto" />
                   <h1 className="mb-4 text-4xl font-semibold leading-none tracking-tight text-secondary">
                     Tal jura med mig
                   </h1>
