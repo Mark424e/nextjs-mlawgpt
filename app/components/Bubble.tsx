@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import assistantPic from '../assets/assistant.webp';
+import { marked } from "marked";
 
 const Bubble = ({ message }) => {
   const { content, role } = message;
@@ -9,9 +10,10 @@ const Bubble = ({ message }) => {
       {role === 'assistant' && (
         <Image src={assistantPic} alt="assistant profile" width={30} className="rounded-full me-3" />
       )}
-      <div className={`bubble px-4 py-2 text-sm text-left border-none shadow-md md:max-w-screen-sm ${role}`}>
-        <div className="bubble-content">{content}</div>
-      </div>
+      <div
+        className={`bubble px-4 py-2 text-sm text-left border-none shadow-md md:max-w-screen-sm ${role}`}
+        dangerouslySetInnerHTML={{ __html: marked(content) }} // Convert Markdown to HTML
+      />
     </div>
   );
 };

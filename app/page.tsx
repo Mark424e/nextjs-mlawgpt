@@ -36,27 +36,29 @@ const Home = () => {
         <div className="main-content">
           <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" />
           <section className={noMessages ? "" : "populated"}>
-            {noMessages ? (
-              <>
-                <h1 className="mb-4 text-4xl font-semibold leading-none tracking-tight text-secondary">
-                  Tal jura med mig
-                </h1>
-                <p className="px-20">
-                  Vælg en prompt nedenfor, eller skriv din egen for at starte en
-                  samtale med MlawGPT.
-                </p>
-                <br />
-                <p className="text-xl text-secondary/60">Spørg om:</p>
-                <PromptSuggestionsRow onPromptClick={handlePrompt} />
-              </>
-            ) : (
-              <>
-                {messages.map((message, index) => (
-                  <Bubble key={`message-${index}`} message={message} />
-                ))}
-                {isLoading && <LoadingBubble />}
-              </>
-            )}
+            <div className="chat-container">
+              {noMessages ? (
+                <>
+                  <h1 className="mb-4 text-4xl font-semibold leading-none tracking-tight text-secondary">
+                    Tal jura med mig
+                  </h1>
+                  <p className="px-20">
+                    Vælg en prompt nedenfor, eller skriv din egen for at starte
+                    en samtale med MlawGPT.
+                  </p>
+                  <br />
+                  <p className="text-xl text-secondary/60">Spørg om:</p>
+                  <PromptSuggestionsRow onPromptClick={handlePrompt} />
+                </>
+              ) : (
+                <>
+                  {messages.map((message, index) => (
+                    <Bubble key={`message-${index}`} message={message} />
+                  ))}
+                  {isLoading && <LoadingBubble />}
+                </>
+              )}
+            </div>
           </section>
           <div className="w-full border-t border-t-secondary/30 pt-5">
             <form

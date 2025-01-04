@@ -64,10 +64,11 @@ export async function POST(req: Request) {
       If the question seems unclear or incomplete, ask the user to clarify or provide more details. Use the following prompt:  
       *"Could you provide more details or specify your legal question so I can assist you better?"*
 
-      Format all responses using markdown where applicable, do not include images, and structure your responses for clarity:
-      - Use bullet points or numbered lists for steps or guidelines.
-      - Highlight legal terms or key points in bold.
-      - Provide references to legal principles or concepts where appropriate, without citing specific case law unless requested.
+      Format all responses **strictly** using Markdown to enhance readability.  
+      - Use headings for structured sections (#, ##, ###).  
+      - Highlight important terms using **bold**.  
+      - Use bullet points or numbered lists where appropriate.  
+      - Create links using Markdown syntax [example](https://example.com). 
 
       ----------------  
       START CONTEXT  

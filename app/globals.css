@@ -54,7 +54,7 @@ section.populated {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .bubble-container.assistant {
@@ -76,6 +76,53 @@ section.populated {
   border-radius: 20px 20px 20px 2px;
   background-color: #f3f3f3;
 }
+
+.bubble h1,
+.bubble h2,
+.bubble h3 {
+  margin: 0.5em 0;
+  font-weight: bold;
+}
+
+.bubble ul {
+  padding-left: 1.5em;
+  list-style-type: disc;
+}
+
+.bubble li {
+  margin-bottom: 0.5em;
+}
+
+.bubble strong {
+  font-weight: bold;
+}
+
+.bubble a {
+  color: #0070f3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.chat-container {
+  max-height: calc(100vh - 200px); /* Adjust based on your layout */
+  overflow-y: auto;
+  padding: 1rem;
+  scroll-behavior: smooth; /* Optional for smooth scrolling */
+}
+
+.chat-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 
 .loader {
   margin: 10px;

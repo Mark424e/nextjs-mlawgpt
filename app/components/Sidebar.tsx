@@ -1,11 +1,15 @@
 import { Plus, Github, ExternalLink, Linkedin } from "lucide-react";
 import Link from "next/link";
 
+import Image from "next/image";
+import MlawGPTLogo from "../assets/MlawGPTLogo.svg";
+
 const Sidebar = () => {
   return (
     <nav className="h-full bg-gray">
       <div className="h-full flex flex-col justify-between items-center px-4 py-6">
         <div className="grid gap-6">
+          <Image src={MlawGPTLogo} width="75" alt="MlawGPT Logo" />
           <div className="bg-white shadow-md border border-secondary/10 text-secondary/20 rounded-xl p-3 transition ease-in-out hover:text-secondary hover:scale-90">
             <Plus />
           </div>
