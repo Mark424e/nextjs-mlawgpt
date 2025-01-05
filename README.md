@@ -1,40 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# MieritzAI - AI-Powered Legal Chatbot
 
-## Getting Started
+*Developed as part of my final bachelor's project in web development.*
 
-First, run the development server:
+MieritzAI is an AI-powered chatbot developed for Mieritz Advokatfirma. The project leverages technologies like **LangChain.js**, **OpenAI API**, and **Datastax Astra DB** to deliver accurate and relevant legal information based on the firm's website [Mlaw.dk](https://mlaw.dk) and general legal knowledge. This project represents the culmination of my bachelor's degree in web development, showcasing the integration of modern technologies to solve a company's challenge.
+
+## Introduction
+
+This project was created as part of my final bachelor's project in web development at Zealand Institute of Business & Technology. The aim was to design and develop an AI-driven chatbot to improve the accessibility of legal information for clients and staff at Mieritz Advokatfirma.
+
+MieritzAI uses a **Retrieval-Augmented Generation (RAG)** architecture to combine generative AI models with precise context retrieved from the firm’s website. By delivering an intuitive and functional solution, the project bridges the gap between advanced technology and the practical needs of the legal field. This work highlights my ability to research, design, implement, and deploy a scalable application that addresses specific user needs.
+
+## Features
+
+- **Semantic Search:** Implements vector-based search to retrieve precise information.
+- **Markdown Formatting:** Generates readable and structured responses using headings, bullet points, and highlights.
+- **Real-time Chat:** Streams responses dynamically for a smooth conversational experience.
+- **User-Friendly Interface:** Intuitive UI with prompt suggestions for easy interaction.
+- **Scalable Hosting:** Deployed on Vercel for fast and reliable performance.
+
+## Technologies
+
+This project utilizes the following technologies:
+
+- **Frontend:** Next.js, React, Tailwind CSS
+- **Backend:** LangChain.js, OpenAI API
+- **Database:** Datastax Astra DB
+- **Hosting:** Vercel
+- **Additional Libraries:** `lucide-react`, `marked`
+
+## Installation
+
+### Requirements
+
+- Node.js v16 or later
+- An OpenAI API key
+- A Datastax account
+
+### Setup
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Mark424e/nextjs-mlawgpt.git
+cd mlawgpt
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env` file and add the following variables:
+
+```bash
+ASTRA_DB_NAMESPACE=<your-namespace>
+ASTRA_DB_COLLECTION=<your-collection>
+ASTRA_DB_API_ENDPOINT=<your-db-endpoint>
+ASTRA_DB_APPLICATION_TOKEN=<your-app-token>
+OPENAI_API_KEY=<your-api-key>
+```
+
+4. Seed the database with legal data:
+
+```bash
+npm run seed
+```
+
+5. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1. Open the application in your browser at http://localhost:3000 or the hosted URL.
+2. Interact with the chatbot by typing questions or selecting one of the suggested prompts.
+3. Receive accurate responses with context from Mlaw Advokatfirma's website.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Deployment
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+The project is deployed on Vercel to ensure scalability and performance.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Manual Deployment
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+1. Log in to [Vercel](https://vercel.com).
+2. Import the project from GitHub.
+3. Ensure the `.env` file is correctly configured.
+4. Click Deploy.
