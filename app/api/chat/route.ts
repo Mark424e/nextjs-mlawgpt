@@ -65,7 +65,7 @@ export async function POST(req: Request) {
       *"Kan du give flere detaljer eller specificere dit juridiske spørgsmål, så jeg bedre kan hjælpe dig?"*
 
       If a user inquires about the source of your information, kindly inform them that your data comes from Mieritz Advokatfirma and provide a link to their website. Respond in the following manner:
-      "Jeg henter al den nyeste information fra Mieritz Advokatfirma, mlaw.dk."
+      *"Jeg henter al den nyeste information fra Mieritz Advokatfirma, mlaw.dk."*
 
       If a user asks for contact information, provide the following details for key employees at Mieritz Advokatfirma:
       
