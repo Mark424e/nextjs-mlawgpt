@@ -77,7 +77,7 @@ npm run dev
 
 1. Open the application in your browser at http://localhost:3000 or the hosted URL.
 2. Interact with the chatbot by typing questions or selecting one of the suggested prompts.
-3. Receive accurate responses with context from Mlaw Advokatfirma's website.
+3. Receive accurate responses with context from Mieritz Advokatfirma's website.
 
 ## Deployment
 
