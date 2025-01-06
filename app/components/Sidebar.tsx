@@ -1,6 +1,8 @@
-import { Github, ExternalLink, Linkedin, PanelLeftOpen } from "lucide-react";
+import { PanelLeftOpen } from "lucide-react";
 import Link from "next/link";
 import NewChatButton from "./NewChatButton";
+import Image from "next/image";
+import Logo from "../assets/mlawlogo.svg";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
@@ -20,22 +22,19 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </div>
             <NewChatButton />
           </div>
-          <div className="grid gap-6">
-            <Link href="https://mlaw.dk/" target="_blank">
-              <ExternalLink className="transition hover:text-primary" />
-            </Link>
-            <Link href="https://github.com/Mark424e">
-              <Github className="transition hover:text-primary" />
-            </Link>
-            <Link href="https://www.linkedin.com/in/markphillip1800/">
-              <Linkedin className="transition hover:text-primary" />
-            </Link>
-          </div>
+          <Link href="https://mlaw.dk/" target="_blank" title="Besøg Mieritz Advokatfirma">
+            <Image
+              src={Logo}
+              width="50"
+              alt="Mlaw Logo Square"
+              className="m-auto"
+            />
+          </Link>
         </div>
       </nav>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-30 md:hidden"
+          className="fixed inset-0 bg-black opacity-30 lg:hidden"
           onClick={toggleSidebar}
         ></div>
       )}

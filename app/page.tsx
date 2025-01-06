@@ -52,7 +52,7 @@ const Home = () => {
               <div className="lg:w-1/2 mx-auto">
                 {noMessages ? (
                   <>
-                    <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" className="m-auto mb-4" />
+                    <Image src={MlawGPTLogo} width="200" alt="MieritzAI Logo" className="m-auto mb-4" />
                     <h1 className="mb-8 text-4xl font-semibold leading-none tracking-tight text-secondary">
                       Tal jura med mig
                     </h1>
