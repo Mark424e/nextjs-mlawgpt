@@ -49,11 +49,11 @@ const Home = () => {
         <div className="main-content">
           <section className={noMessages ? "" : "populated"}>
             <div className="chat-container">
-              <div className="lg:w-1/2 mx-auto">
+              <div className="lg:w-1/2 mx-auto ps-6 lg:ps-0">
                 {noMessages ? (
                   <>
-                    <Image src={MlawGPTLogo} width="200" alt="MieritzAI Logo" className="m-auto mb-4" />
-                    <h1 className="mb-8 text-4xl font-semibold leading-none tracking-tight text-secondary">
+                    <Image src={MlawGPTLogo} alt="MieritzAI Logo" className="m-auto mb-4 w-[125px] lg:w-[200px]" />
+                    <h1 className="mb-8 text-2xl lg:text-4xl font-semibold leading-none tracking-tight text-secondary">
                       Tal jura med mig
                     </h1>
                     <p className="px-20">
