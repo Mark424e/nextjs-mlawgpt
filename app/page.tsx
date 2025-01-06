@@ -81,13 +81,13 @@ const Home = () => {
               className="h-16 w-full flex rounded-3xl overflow-hidden"
             >
               <input
-                className="w-[85%] p-3 text-sm bg-gray"
+                className="w-[85%] p-3 lg:text-sm bg-gray"
                 onChange={handleInputChange}
                 value={input}
                 placeholder="Skriv din besked..."
               />
               <input
-                className="w-[25%] md:w-[15%] p-[10px] text-sm border-none text-white bg-primary transition hover:bg-primary/50 cursor-pointer"
+                className="w-[25%] md:w-[15%] p-[10px] lg:text-sm border-none text-white bg-primary transition hover:bg-primary/50 cursor-pointer"
                 type="submit"
                 value="Send"
               />
