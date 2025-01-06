@@ -1,4 +1,4 @@
-import { PanelLeftOpen } from "lucide-react";
+import { PanelLeftClose } from "lucide-react";
 import Link from "next/link";
 import NewChatButton from "./NewChatButton";
 import Image from "next/image";
@@ -15,9 +15,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className="h-full flex flex-col justify-between items-center px-4 py-6">
           <div>
             <div className="fixed top-4 left-4 z-50">
-              <PanelLeftOpen
+              <PanelLeftClose
                 onClick={toggleSidebar}
-                className="transition hover:text-primary lg:hidden"
+                className="transition hover:text-primary lg:hidden cursor-pointer"
               />
             </div>
             <NewChatButton />
