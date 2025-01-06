@@ -7,6 +7,8 @@ import PromptSuggestionsRow from "./components/PromptSuggestionsRow";
 import Image from "next/image";
 import MlawGPTLogo from "./assets/MlawGPTLogo.svg";
 import Sidebar from "./components/Sidebar";
+import { useState } from "react";
+import { PanelLeftOpen } from "lucide-react";
 
 const Home = () => {
   const {
@@ -17,6 +19,8 @@ const Home = () => {
     handleInputChange,
     handleSubmit,
   } = useChat();
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const noMessages = !messages || messages.length === 0;
 
@@ -29,38 +33,49 @@ const Home = () => {
     append(msg);
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <>
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+      <div className="lg:hidden fixed transition text-secondary hover:text-primary top-4 left-4">
+        <PanelLeftOpen onClick={toggleSidebar} className="cursor-pointer" />
+      </div>
+
       <main>
         <div className="main-content">
           <section className={noMessages ? "" : "populated"}>
             <div className="chat-container">
-              {noMessages ? (
-                <>
-                  <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" className="m-auto" />
-                  <h1 className="mb-4 text-4xl font-semibold leading-none tracking-tight text-secondary">
-                    Tal jura med mig
-                  </h1>
-                  <p className="px-20">
-                    Vælg en prompt nedenfor, eller skriv din egen for at starte
-                    en samtale med MlawGPT.
-                  </p>
-                  <br />
-                  <p className="text-xl text-secondary/60">Spørg om:</p>
-                  <PromptSuggestionsRow onPromptClick={handlePrompt} />
-                </>
-              ) : (
-                <>
-                  {messages.map((message, index) => (
-                    <Bubble key={`message-${index}`} message={message} />
-                  ))}
-                  {isLoading && <LoadingBubble />}
-                </>
-              )}
+              <div className="lg:w-1/2 mx-auto">
+                {noMessages ? (
+                  <>
+                    <Image src={MlawGPTLogo} width="200" alt="MlawGPT Logo" className="m-auto mb-4" />
+                    <h1 className="mb-8 text-4xl font-semibold leading-none tracking-tight text-secondary">
+                      Tal jura med mig
+                    </h1>
+                    <p className="px-20">
+                      Vælg en prompt nedenfor, eller skriv din egen for at starte
+                      en samtale med MlawGPT.
+                    </p>
+                    <br />
+                    <p className="text-xl text-secondary/60">Spørg om:</p>
+                    <PromptSuggestionsRow onPromptClick={handlePrompt} />
+                  </>
+                ) : (
+                  <>
+                    {messages.map((message, index) => (
+                      <Bubble key={`message-${index}`} message={message} />
+                    ))}
+                    {isLoading && <LoadingBubble />}
+                  </>
+                )}
+              </div>
             </div>
           </section>
-          <div className="w-full border-t border-t-secondary/30 pt-5">
+          <div className="w-full lg:w-1/2 border-t border-t-secondary/30 pt-5 px-6 lg:px-0">
             <form
               onSubmit={handleSubmit}
               className="h-16 w-full flex rounded-3xl overflow-hidden"
@@ -72,7 +87,7 @@ const Home = () => {
                 placeholder="Skriv din besked..."
               />
               <input
-                className="w-[15%] p-[10px] text-sm border-none text-white bg-primary transition hover:bg-primary/50 cursor-pointer"
+                className="w-[25%] md:w-[15%] p-[10px] text-sm border-none text-white bg-primary transition hover:bg-primary/50 cursor-pointer"
                 type="submit"
                 value="Send"
               />
