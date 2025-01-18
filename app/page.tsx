@@ -53,15 +53,13 @@ const Home = () => {
                 {noMessages ? (
                   <>
                     <Image src={MieritzAILogo} alt="MieritzAI Logo" className="m-auto mb-4 w-[125px] lg:w-[200px]" />
-                    <h1 className="mb-8 text-2xl lg:text-4xl font-semibold leading-none tracking-tight text-secondary">
-                      Tal jura med mig
+                    <h1 className="mb-8 text-2xl font-semibold leading-none tracking-tight text-secondary">
+                      Din juridiske AI assistent
                     </h1>
-                    <p className="px-20">
+                    <p className="px-10 mb-2">
                       Vælg en prompt nedenfor, eller skriv din egen for at starte
-                      en samtale med MlawGPT.
+                      en samtale med MieritzAi
                     </p>
-                    <br />
-                    <p className="text-xl text-secondary/60">Spørg om:</p>
                     <PromptSuggestionsRow onPromptClick={handlePrompt} />
                   </>
                 ) : (
