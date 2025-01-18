@@ -5,7 +5,7 @@ import Bubble from "./components/Bubble";
 import LoadingBubble from "./components/LoadingBubble";
 import PromptSuggestionsRow from "./components/PromptSuggestionsRow";
 import Image from "next/image";
-import MlawGPTLogo from "./assets/MlawGPTLogo.svg";
+import MieritzAILogo from "./assets/mieritzailogo.svg";
 import Sidebar from "./components/Sidebar";
 import { useState } from "react";
 import { PanelLeftOpen } from "lucide-react";
@@ -52,7 +52,7 @@ const Home = () => {
               <div className="lg:w-1/2 mx-auto lg:ps-0">
                 {noMessages ? (
                   <>
-                    <Image src={MlawGPTLogo} alt="MieritzAI Logo" className="m-auto mb-4 w-[125px] lg:w-[200px]" />
+                    <Image src={MieritzAILogo} alt="MieritzAI Logo" className="m-auto mb-4 w-[125px] lg:w-[200px]" />
                     <h1 className="mb-8 text-2xl lg:text-4xl font-semibold leading-none tracking-tight text-secondary">
                       Tal jura med mig
                     </h1>
