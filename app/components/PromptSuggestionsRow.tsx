@@ -20,7 +20,6 @@ const PromptSuggestionsRow = ({ onPromptClick }) => {
   const [shuffledPrompts, setShuffledPrompts] = useState([]);
   const [numPrompts, setNumPrompts] = useState(6);
 
-  // Function to shuffle an array
   const shuffleArray = (array) => {
     return array
       .map((item) => ({ item, sort: Math.random() }))
@@ -29,7 +28,6 @@ const PromptSuggestionsRow = ({ onPromptClick }) => {
   };
 
   useEffect(() => {
-    // Shuffle the prompts on component load
     setShuffledPrompts(shuffleArray(allPrompts));
 
     const handleResize = () => {
@@ -48,7 +46,7 @@ const PromptSuggestionsRow = ({ onPromptClick }) => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3">
       {shuffledPrompts.slice(0, numPrompts).map((prompt, index) => (
         <PromptSuggestionButton
           key={`suggestion-${index}`}

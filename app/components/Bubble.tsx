@@ -12,7 +12,7 @@ const Bubble = ({ message }) => {
       )}
       <div
         className={`bubble px-4 py-2 text-sm text-left border-none shadow-md md:max-w-screen-sm ${role}`}
-        dangerouslySetInnerHTML={{ __html: marked(content) }} // Convert Markdown to HTML
+        dangerouslySetInnerHTML={{ __html: marked(content) }}
       />
     </div>
   );
