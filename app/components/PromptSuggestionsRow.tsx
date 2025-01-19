@@ -15,6 +15,21 @@ const PromptSuggestionsRow = ({ onPromptClick }) => {
     "Hvilke rettigheder har jeg som lejer?",
     "Hvordan fungerer arvereglerne i Danmark?",
     "Hvad er en fremtidsfuldmagt, og hvordan opretter jeg en?",
+    "Hvordan kan jeg beskytte min virksomhed mod retssager?",
+    "Hvad er forskellen på civilret og strafferet?",
+    "Hvordan laver jeg en lejekontrakt?",
+    "Hvad skal jeg gøre, hvis jeg bliver udsat for diskrimination?",
+    "Hvordan håndterer man en skilsmisse juridisk?",
+    "Hvilke krav er der for at oprette et testamente?",
+    "Hvad er arveafgift, og hvordan beregnes det?",
+    "Hvordan kan jeg få erstatning for en trafikulykke?",
+    "Hvad gør jeg, hvis jeg bliver anklaget for økonomisk kriminalitet?",
+    "Hvordan beskytter jeg min ophavsret?",
+    "Hvad betyder det at være i gældssanering?",
+    "Hvilke regler gælder for arbejdsskader?",
+    "Hvordan laver jeg en virksomhedsaftale?",
+    "Hvordan fungerer reglerne for international arv?",
+    "Hvordan ansøger jeg om fri proces i en retssag?",
   ];
 
   const [shuffledPrompts, setShuffledPrompts] = useState([]);
