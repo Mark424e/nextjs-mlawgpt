@@ -9,6 +9,7 @@ const Sidebar = ({
   toggleSidebar,
   chatHistory,
   loadChat,
+  startNewChat,
   deleteChat,
 }) => {
   return (
@@ -16,7 +17,7 @@ const Sidebar = ({
       <nav
         className={`h-full bg-gray fixed inset-0 lg:relative transition-transform transform lg:translate-x-0 z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } w-fit`}
+        } w-fit lg:min-w-64`}
       >
         <div className="h-full flex flex-col justify-between items-center px-4 py-6">
           <div>
@@ -26,7 +27,7 @@ const Sidebar = ({
                 className="transition hover:text-primary lg:hidden cursor-pointer"
               />
             </div>
-            <NewChatButton />
+            <NewChatButton startNewChat={startNewChat} />
             <div className="mt-4">
               {chatHistory.map((chat, index) => (
                 <div

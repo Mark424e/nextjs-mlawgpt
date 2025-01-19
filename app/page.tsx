@@ -23,6 +23,7 @@ const Home = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [currentMessages, setCurrentMessages] = useState(messages);
+  const [initialPromptSubmitted, setInitialPromptSubmitted] = useState(false);
 
   useEffect(() => {
     const savedChats = JSON.parse(localStorage.getItem("chatHistory")) || [];
@@ -37,6 +38,14 @@ const Home = () => {
     setCurrentMessages(messages);
   }, [messages]);
 
+  useEffect(() => {
+    if (initialPromptSubmitted) {
+      const updatedChatHistory = [...chatHistory];
+      updatedChatHistory[updatedChatHistory.length - 1] = currentMessages;
+      setChatHistory(updatedChatHistory);
+    }
+  }, [currentMessages]);
+
   const handlePrompt = (promptText) => {
     const msg: Message = {
       id: crypto.randomUUID(),
@@ -44,8 +53,9 @@ const Home = () => {
       role: "user",
     };
     append(msg);
-    if (currentMessages.length === 0) {
+    if (!initialPromptSubmitted) {
       setChatHistory([...chatHistory, [msg]]);
+      setInitialPromptSubmitted(true);
     }
   };
 
@@ -58,12 +68,11 @@ const Home = () => {
         role: "user",
       };
       append(newMessage);
-      if (currentMessages.length === 0) {
+      if (!initialPromptSubmitted) {
         setChatHistory([...chatHistory, [newMessage]]);
+        setInitialPromptSubmitted(true);
       }
-      handleInputChange({
-        target: { value: "" },
-      } as React.ChangeEvent<HTMLInputElement>);
+      handleInputChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>);
     }
   };
 
@@ -74,6 +83,11 @@ const Home = () => {
   const loadChat = (index) => {
     const selectedChat = chatHistory[index];
     setCurrentMessages(selectedChat);
+  };
+
+  const startNewChat = () => {
+    setInitialPromptSubmitted(false);
+    window.location.reload(); // Reload the page to start a new chat
   };
 
   const deleteChat = (index) => {
@@ -91,6 +105,7 @@ const Home = () => {
         toggleSidebar={toggleSidebar}
         chatHistory={chatHistory}
         loadChat={loadChat}
+        startNewChat={startNewChat}
         deleteChat={deleteChat}
       />
 
@@ -105,17 +120,13 @@ const Home = () => {
               <div className="lg:w-1/2 mx-auto lg:ps-0">
                 {noMessages ? (
                   <>
-                    <Image
-                      src={MieritzAILogo}
-                      alt="MieritzAI Logo"
-                      className="m-auto mb-4 w-[125px] lg:w-[200px]"
-                    />
+                    <Image src={MieritzAILogo} alt="MieritzAI Logo" className="m-auto mb-4 w-[125px] lg:w-[200px]" />
                     <h1 className="mb-8 text-2xl font-semibold leading-none tracking-tight text-secondary">
                       Din juridiske AI assistent
                     </h1>
                     <p className="px-10 mb-2">
-                      Vælg en prompt nedenfor, eller skriv din egen for at
-                      starte en samtale med MieritzAi
+                      Vælg en prompt nedenfor, eller skriv din egen for at starte
+                      en samtale med MieritzAi
                     </p>
                     <PromptSuggestionsRow onPromptClick={handlePrompt} />
                   </>
