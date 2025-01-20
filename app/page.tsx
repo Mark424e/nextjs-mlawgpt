@@ -83,11 +83,14 @@ const Home = () => {
   const loadChat = (index) => {
     const selectedChat = chatHistory[index];
     setCurrentMessages(selectedChat);
+    if (isSidebarOpen) {
+      setIsSidebarOpen(false);
+    }
   };
 
   const startNewChat = () => {
     setInitialPromptSubmitted(false);
-    window.location.reload(); // Reload the page to start a new chat
+    window.location.reload();
   };
 
   const deleteChat = (index) => {
