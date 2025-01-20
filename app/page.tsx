@@ -109,7 +109,7 @@ const Home = () => {
         deleteChat={deleteChat}
       />
 
-      <div className="lg:hidden fixed transition text-secondary hover:text-primary top-4 left-4">
+      <div className="lg:hidden fixed transition text-secondary hover:text-primary bg-gray rounded top-4 left-4">
         <PanelLeftOpen onClick={toggleSidebar} className="cursor-pointer" />
       </div>
 
