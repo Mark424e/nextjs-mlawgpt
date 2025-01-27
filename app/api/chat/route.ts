@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { DataAPIClient } from "@datastax/astra-db-ts";
 
+// Extracting environment variables for configuration
 const {
   ASTRA_DB_NAMESPACE,
   ASTRA_DB_COLLECTION,
@@ -10,45 +11,55 @@ const {
   OPENAI_API_KEY,
 } = process.env;
 
+// Initialize OpenAI client with API key
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,
 });
 
+// Initialize DataStax Astra DB client for database operations
 const client = new DataAPIClient(ASTRA_DB_APPLICATION_TOKEN);
 const db = client.db(ASTRA_DB_API_ENDPOINT, { namespace: ASTRA_DB_NAMESPACE });
 
+// Handles AI-driven legal assistant responses with context fetched from the database.
 export async function POST(req: Request) {
   try {
+    // Parse the incoming JSON payload to extract messages from the client
     const { messages } = await req.json();
     const latestMessage = messages[messages?.length - 1]?.content;
 
+    // Variable to store the document context fetched from the database
     let docContext = "";
 
+    // Step 1: Generate embeddings for the latest message using OpenAI
     const embedding = await openai.embeddings.create({
-      model: "text-embedding-3-small",
-      input: latestMessage,
-      encoding_format: "float",
+      model: "text-embedding-3-small", // Embedding model
+      input: latestMessage, // User's latest query/message
+      encoding_format: "float", // Encoding format for the embeddings
     });
 
     try {
+      // Step 2: Query Astra DB collection using the generated embedding
       const collection = await db.collection(ASTRA_DB_COLLECTION);
+
+      // Retrieve documents using vector-based search, sorted by similarity
       const cursor = collection.find(null, {
         sort: {
-          $vector: embedding.data[0].embedding,
+          $vector: embedding.data[0].embedding, // Vector similarity sorting
         },
-        limit: 10,
+        limit: 10, // Retrieve up to 10 relevant documents
       });
 
       const documents = await cursor.toArray();
 
+      // Extract the text from the documents and prepare the context
       const docsMap = documents?.map((doc) => doc.text);
-
       docContext = JSON.stringify(docsMap);
     } catch (err) {
       console.log("Error querying db...");
-      docContext = "";
+      docContext = ""; // If there's an error, fall back to an empty context
     }
 
+    // Step 3: Prepare the AI's system message with context and instructions
     const template = {
       role: "system",
       content: `
@@ -101,15 +112,17 @@ export async function POST(req: Request) {
       `,
     };
 
+    // Step 4: Create a GPT-4o completion with streaming response
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
-      stream: true,
-      messages: [template, ...messages],
+      model: "gpt-4o", // AI model for generating responses
+      stream: true, // Enable streaming response
+      messages: [template, ...messages], // Include system message and user messages
     });
 
+    // Convert OpenAI's streaming response into a usable format for the client
     const stream = OpenAIStream(response);
     return new StreamingTextResponse(stream);
   } catch (err) {
-    throw err;
+    throw err; // Throw error if any exception occurs
   }
 }

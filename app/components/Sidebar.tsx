@@ -5,12 +5,12 @@ import Image from "next/image";
 import Logo from "../assets/mlawlogo.svg";
 
 const Sidebar = ({
-  isOpen,
-  toggleSidebar,
-  chatHistory,
-  loadChat,
-  startNewChat,
-  deleteChat,
+  isOpen, // (boolean): Determines whether the sidebar is visible or hidden.
+  toggleSidebar, // (function): Toggles the visibility of the sidebar.
+  chatHistory, // (array): An array of chat sessions containing messages.
+  loadChat, // (function): Loads a specific chat session when selected.
+  startNewChat, // (function): Initiates a new chat session.
+  deleteChat, // (function): Deletes a specific chat session from the history.
 }) => {
   return (
     <>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PromptSuggestionButton from "./PromptSuggestionButton";
 
 const PromptSuggestionsRow = ({ onPromptClick }) => {
+  // Array of all available prompts
   const allPrompts = [
     "Hvem kan hjælpe med juridisk rådgivning?",
     "Hvad koster det at få en advokat?",
@@ -32,31 +33,40 @@ const PromptSuggestionsRow = ({ onPromptClick }) => {
     "Hvordan ansøger jeg om fri proces i en retssag?",
   ];
 
+  // State for the shuffled prompts to be displayed
   const [shuffledPrompts, setShuffledPrompts] = useState([]);
+
+  // State for the number of prompts to show based on screen size
   const [numPrompts, setNumPrompts] = useState(6);
 
+  // Shuffles an array randomly to provide a different order each time.
   const shuffleArray = (array) => {
     return array
-      .map((item) => ({ item, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ item }) => item);
+      .map((item) => ({ item, sort: Math.random() })) // Add random sort keys
+      .sort((a, b) => a.sort - b.sort) // Sort by the random keys
+      .map(({ item }) => item); // Extract the items back into an array
   };
 
+  // Effect to initialize the shuffled prompts and handle responsive prompt count
   useEffect(() => {
+    // Shuffle prompts on initial render
     setShuffledPrompts(shuffleArray(allPrompts));
 
+
+    // Adjusts the number of prompts displayed based on the screen width.
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setNumPrompts(4);
+        setNumPrompts(4); // Show fewer prompts on smaller screens
       } else {
-        setNumPrompts(6);
+        setNumPrompts(6); // Show more prompts on larger screens
       }
     };
 
+    // Call the resize handler initially and add a resize listener
     handleResize();
-
     window.addEventListener("resize", handleResize);
 
+    // Cleanup: Remove the resize listener on component unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

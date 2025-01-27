@@ -12,32 +12,43 @@ import { PanelLeftOpen } from "lucide-react";
 
 const Home = () => {
   const {
-    append,
-    isLoading,
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
+    append, // Adds a new message to the chat history
+    isLoading, // Indicates whether a response is being fetched
+    messages, // The current chat messages
+    input, // The user's input in the chatbox
+    handleInputChange, // Updates the input state
+    handleSubmit, // Handles form submission
   } = useChat();
 
+  // Sidebar open/close state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Stores the complete chat history in an array of message arrays
   const [chatHistory, setChatHistory] = useState([]);
+
+  // Tracks the current session's messages
   const [currentMessages, setCurrentMessages] = useState(messages);
+
+  // Tracks whether the first prompt has been submitted
   const [initialPromptSubmitted, setInitialPromptSubmitted] = useState(false);
 
+  // Loads chat history from localStorage when the component is mounted
   useEffect(() => {
     const savedChats = JSON.parse(localStorage.getItem("chatHistory")) || [];
     setChatHistory(savedChats);
   }, []);
 
+  // Saves chat history to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
   }, [chatHistory]);
 
+  // Keeps the currentMessages state in sync with the messages provided by the `useChat` hook
   useEffect(() => {
     setCurrentMessages(messages);
   }, [messages]);
 
+  // Updates the most recent chat session in chatHistory when messages are updated
   useEffect(() => {
     if (initialPromptSubmitted) {
       const updatedChatHistory = [...chatHistory];
@@ -46,40 +57,44 @@ const Home = () => {
     }
   }, [currentMessages]);
 
+  // Handles the selection of a prompt and sends it as a message
   const handlePrompt = (promptText) => {
     const msg: Message = {
-      id: crypto.randomUUID(),
-      content: promptText,
-      role: "user",
+      id: crypto.randomUUID(), // Generates a unique ID for the message
+      content: promptText, // Content of the prompt
+      role: "user", // Indicates the message is from the user
     };
-    append(msg);
+    append(msg); // Adds the message to the chat
     if (!initialPromptSubmitted) {
       setChatHistory([...chatHistory, [msg]]);
       setInitialPromptSubmitted(true);
     }
   };
 
+  // Handles form submission when the user sends a message
   const handleFormSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents the default form submission behavior
     if (input.trim()) {
       const newMessage: Message = {
         id: crypto.randomUUID(),
         content: input,
         role: "user",
       };
-      append(newMessage);
+      append(newMessage); // Adds the user's input as a new message
       if (!initialPromptSubmitted) {
         setChatHistory([...chatHistory, [newMessage]]);
         setInitialPromptSubmitted(true);
       }
-      handleInputChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>);
+      handleInputChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>); // Clears the input field
     }
   };
 
+  // Toggles the visibility of the sidebar
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // Loads a selected chat session from the history into the currentMessages state
   const loadChat = (index) => {
     const selectedChat = chatHistory[index];
     setCurrentMessages(selectedChat);
@@ -88,17 +103,20 @@ const Home = () => {
     }
   };
 
+  // Starts a new chat session by resetting relevant states
   const startNewChat = () => {
     setInitialPromptSubmitted(false);
-    window.location.reload();
+    window.location.reload(); // Refreshes the page to clear the current session
   };
 
+  // Deletes a specific chat session from chatHistory and updates localStorage
   const deleteChat = (index) => {
     const updatedChatHistory = chatHistory.filter((_, i) => i !== index);
     setChatHistory(updatedChatHistory);
     localStorage.setItem("chatHistory", JSON.stringify(updatedChatHistory));
   };
 
+  // Determines if there are no messages in the current session
   const noMessages = !currentMessages || currentMessages.length === 0;
 
   return (
